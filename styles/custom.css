@@ -1,0 +1,144 @@
+:root {
+  --purple: #502374;
+  --green: #425124;
+  --yellow: #dba837;
+  --red: #903752;
+}
+
+html {
+  /* TODO: after closing modal by pressing 'esc' button, headless ui adds overflow:hidden to html and it prevents scrolling  */
+  overflow-y: auto !important;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+.crop-container-16-9-top-left {
+  height: 173px;
+  width: 318px;
+  position: relative;
+  overflow: hidden;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.image-reflect {
+  -webkit-box-reflect: below 5px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(80%, transparent), to(white));
+}
+
+@media (min-width: 768px) {
+  .image-reflect {
+    -webkit-box-reflect: below 8px -webkit-gradient(linear, left top, left
+          bottom, from(transparent), color-stop(80%, transparent), to(white));
+  }
+}
+
+/** SINGLE BLOG CONTENT  STYLE**/
+
+.single-blog-content ul {
+  list-style-type: disc;
+  padding-left: 30px;
+}
+.single-blog-content ol {
+  list-style-type: decimal;
+  padding-left: 30px;
+}
+.single-blog-content b,
+.single-blog-content strong {
+  font-family: 'MaisonNeueMedium';
+}
+.single-blog-content a {
+  color: #867bff;
+}
+
+.hide-scroll-bar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hide-scroll-bar::-webkit-scrollbar {
+  display: none;
+}
+
+/** Career Slider **/
+.career-slider .slick-track {
+  display: flex !important;
+}
+.career-slider .slick-slide {
+  height: inherit !important;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+.career-slider .slick-slide > div {
+  height: 100%;
+}
+
+.slick-dots {
+  display: flex !important;
+  justify-content: center;
+  margin: 0;
+  padding: 1rem 0;
+  list-style-type: none;
+}
+.slick-dots li {
+  margin: 0 8px;
+}
+.slick-dots button {
+  display: block;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: none;
+  border-radius: 100%;
+  background: #f2eaed;
+  text-indent: -9999px;
+}
+.slick-dots li.slick-active button {
+  background-color: #c69aa7;
+}
+
+/** Header Active and Hover States Start **/
+
+.theme-purple .header-links a:hover {
+  color: var(--purple);
+}
+.theme-green .header-links a:hover {
+  color: var(--green);
+}
+.theme-yellow .header-links a:hover {
+  color: var(--yellow);
+}
+.theme-red .header-links a:hover {
+  color: var(--red);
+}
+.theme-purple .header-links .active {
+  border-bottom: 2px solid var(--purple);
+}
+.theme-green .header-links .active {
+  border-bottom: 2px solid var(--green);
+}
+.theme-yellow .header-links .active {
+  border-bottom: 2px solid var(--yellow);
+}
+.theme-red .header-links .active {
+  border-bottom: 2px solid var(--red);
+}
+
+/** Header Active and Hover States End **/
+
+/** Icon section **/
+
+.three-col-icon-section svg,
+.four-col-icon-section svg {
+  max-height: 100%;
+  max-width: 100%;
+}

@@ -1,0 +1,36 @@
+{
+  "containerDefinitions": [
+    {
+      "name": "{{ env }}-storybook",
+      "image": "{{ storybook_ecr_repo }}:{{ storybook_image_name }}",
+      "cpu": 256,
+      "memory": 512,
+      "portMappings": [
+        {
+          "containerPort": 3000,
+          "hostPort": 3000,
+          "protocol": "tcp"
+        }
+      ],
+      "entryPoint": [],
+      "command": [],
+      "environment": [],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/{{ env }}/{{ env }}-storybook",
+          "awslogs-region": "{{ aws_region }}",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ],
+  "family": "{{ env }}-storybook",
+  "executionRoleArn": "arn:aws:iam::{{ account_id }}:role/{{ env }}-storybook-ecs-task-execution-role",
+  "networkMode": "awsvpc",
+  "cpu": "256",
+  "memory": "512",
+  "requiresCompatibilities": [
+    "FARGATE"
+  ]
+}

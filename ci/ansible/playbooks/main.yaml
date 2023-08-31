@@ -1,0 +1,14 @@
+- name: Deploy
+  hosts: localhost
+  connection: local
+
+  vars_files:
+    - ../inventory/common.yml
+    - ../inventory/{{ env }}/configs.yml
+  vars:
+    app_image_name: '{{ app_image_name }}'
+    storybook_image_name: '{{ storybook_image_name }}'
+    env: '{{ env }}'
+
+  roles:
+    - role: 'deploy_td'

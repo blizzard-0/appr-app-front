@@ -1,0 +1,44 @@
+{
+  "type": "module",
+  "compilerOptions": {
+    "allowJs": false,
+    "removeComments": false,
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "esModuleInterop": true,
+    "incremental": true,
+    "noImplicitAny": true,
+    "target": "ESNext",
+    "lib": ["DOM", "ESNext"],
+    "noEmit": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["components/*"],
+      "@/hooks/*": ["hooks/*"],
+      "@/modules/*": ["modules/*"],
+      "@/utils/*": ["utils/*"],
+      "@/generated/*": ["generated/*"],
+      "@/consts/*": ["consts/*"],
+      "@/pages/*": ["pages/*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "modules/wallet/MyWalletPage/Components/UserDetails"
+  ],
+  "exclude": ["node_modules", "cypress"]
+}

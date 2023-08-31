@@ -1,0 +1,1 @@
+export { CredentialPage } from './Credential';

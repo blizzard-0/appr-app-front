@@ -1,0 +1,11 @@
+# Application Specific configuration for stag env only
+env_frontend:
+  NEXT_PUBLIC_APP_BACKEND_BASE_URL: 'https://api.staging.appreciate.it'
+  NEXT_PUBLIC_APP_FRONTEND_BASE_URL: 'https://staging.appreciate.it'
+  NEXT_PUBLIC_GRAPHQL_ENDPOINT: 'https://api.staging.appreciate.it/graphql'
+  NEXT_PUBLIC_CLOUDINARY_USER_PHOTO_UPLOAD_PRESET: 'stag-user-uploads'
+  NEXT_PUBLIC_MIXPANEL_TOKEN: '28ad38c4299e17eb30305edc7be522a3'
+  NEXT_PUBLIC_MIXPANEL_DEBUG: 'true'
+  NEXT_PUBLIC_SENTRY_DSN: 'https://24f19de7ac634f44857207600473582c@o1097258.ingest.sentry.io/6181791'
+  NEXT_PUBLIC_IS_GTM_ENABLED: 'false'
+  NEXT_PUBLIC_IS_EXPLORE_ENABLED: 'true'

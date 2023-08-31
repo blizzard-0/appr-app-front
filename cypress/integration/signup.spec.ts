@@ -1,0 +1,38 @@
+import { AuthData } from '../fixtures/auth.fixtures';
+
+describe('login', () => {
+  beforeEach(() => {
+    cy.visit('/app/signup');
+  });
+
+  describe('Signup navigation', () => {
+    it('should navigate to sign up', () => {
+      cy.get('[data-cy="nav-login"]').click();
+      cy.url().should('include', '/app/login');
+    });
+
+    it('should navigate to about', () => {
+      cy.get('#nav-about').click();
+      cy.url().should('include', '/about');
+    });
+
+    it('should navigate to careers', () => {
+      cy.get('#nav-careers').click();
+      cy.url().should('include', '/careers');
+    });
+
+    it('should navigate to faq', () => {
+      cy.get('#nav-faq').click();
+      cy.url().should('include', '/faq');
+    });
+  });
+
+  describe('Signup form submission', () => {
+    it('should send signup email successfully', () => {
+      cy.get('#fullname').type(AuthData.name);
+      cy.get('#email').type(AuthData.email);
+      cy.get('#btn_signup').click();
+      cy.url().should('include', '/app/auth');
+    });
+  });
+});

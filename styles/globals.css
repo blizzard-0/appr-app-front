@@ -1,0 +1,18 @@
+@import url('./fonts.css');
+@import url('./custom.css');
+
+@tailwind base;
+@tailwind components;
+
+@tailwind utilities;
+
+html,
+body,
+#__next {
+  min-height: 100%;
+}
+
+body {
+  @apply bg-gray-100;
+  /* @apply bg-krestrel-white; */
+}

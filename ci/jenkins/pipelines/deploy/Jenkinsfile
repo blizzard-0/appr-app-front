@@ -1,0 +1,87 @@
+@Library('shared-library') _
+
+pipeline {
+    environment {
+      ECS_POST_WAIT_TIMEOUT=900
+      INTERVAL=5
+    }
+    agent any
+    options {
+        timeout(time: 1, unit: 'HOURS')
+        disableConcurrentBuilds()
+    }
+    parameters {
+        string(name: 'APP_IMAGE_TAG', defaultValue: '', description: 'APP Docker build Image tag')
+        string(name: 'STORYBOOK_IMAGE_TAG', defaultValue: '', description: 'Storybook Docker build Image tag')
+        string(name: 'ENV', defaultValue: 'stag', description: 'Environment to deploy')
+    }
+    stages { 
+        stage("Creating Task Definitions")
+        {
+            steps
+            {
+                script {
+                    SendSlackNotification("Deploy","STARTED")
+                    sh "cd ci/ansible/ && ansible-playbook playbooks/main.yaml --extra-vars 'env=${params.ENV} app_image_name=${params.APP_IMAGE_TAG} storybook_image_name=${params.STORYBOOK_IMAGE_TAG} api_image_name=${params.API_IMAGE_TAG} db_mig_image_name=${params.DB_MIG_IMAGE_TAG} docs_image_tag=${params.DOCS_IMAGE_TAG} scraping_service_image_name=${params.SCRAPING_TASK_IMAGE_TAG} s3_product_uploader_image_tag=${params.S3_PRODUCTS_UPLOADER_IMAGE_TAG}'"
+                }
+            }
+        }
+
+        stage("Deployment") 
+        {
+          parallel {
+              stage("Deploy APP Service")
+              {
+                steps
+                {
+                  script {
+                      sh "ci/jenkins/scripts/deploy.sh ${params.ENV} app"
+                  }
+                }
+              }
+
+              stage("Deploy Storybook Service")
+              {
+                steps
+                {
+                  script {
+                    sh "ci/jenkins/scripts/deploy.sh ${params.ENV} storybook"
+                  }
+                }
+              }
+
+          }          
+        }
+        
+        stage("Post deployment") 
+        {
+          parallel {
+              stage("Post app deploy wait")
+              {
+                steps
+                {
+                  script {
+                    sh "ECS_CLUSTER=${params.ENV}-ecs ECS_SERVICE=${params.ENV}-app INTERVAL=${INTERVAL} TIMEOUT=${ECS_POST_WAIT_TIMEOUT} ci/jenkins/scripts/ecs-deployment-wait.sh"
+                  }
+                }
+              } 
+
+              stage("Post Storybook deploy wait")
+              {
+                steps
+                {
+                  script {
+                    sh "ECS_CLUSTER=${params.ENV}-ecs ECS_SERVICE=${params.ENV}-storybook INTERVAL=${INTERVAL} TIMEOUT=${ECS_POST_WAIT_TIMEOUT} ci/jenkins/scripts/ecs-deployment-wait.sh"
+                  }
+                }
+              }   
+          }
+        }
+      }
+
+    post { 
+        always { 
+            SendSlackNotification("Deploy",currentBuild.result)
+        }
+    }
+}

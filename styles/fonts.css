@@ -1,0 +1,219 @@
+@font-face {
+  font-family: 'MaisonNeueMonoRegular';
+  src: url('https://res.cloudinary.com/appreciate-stuff-inc/raw/upload/v1633109989/assets/fonts/MaisonNeueMono-Regular_zhxhvn.woff2')
+      format('woff2'),
+    url('https://res.cloudinary.com/appreciate-stuff-inc/raw/upload/v1633109989/assets/fonts/MaisonNeueMono-Regular_yl4jns.woff')
+      format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'MaisonNeueMedium';
+  src: url('https://res.cloudinary.com/appreciate-stuff-inc/raw/upload/v1632861901/assets/fonts/MaisonNeue-Medium_gll7hv.woff2')
+      format('woff2'),
+    url('https://res.cloudinary.com/appreciate-stuff-inc/raw/upload/v1632861901/assets/fonts/MaisonNeue-Medium_t16j6r.woff')
+      format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'MaisonNeueLight';
+  src: url('https://res.cloudinary.com/appreciate-stuff-inc/raw/upload/v1632861901/assets/fonts/MaisonNeue-Light_xmhlnm.woff2')
+      format('woff2'),
+    url('https://res.cloudinary.com/appreciate-stuff-inc/raw/upload/v1632861901/assets/fonts/MaisonNeue-Light_jg1lra.woff')
+      format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'MaisonNeueThin';
+  src: url('https://res.cloudinary.com/appreciate-stuff-inc/raw/upload/v1632861901/assets/fonts/MaisonNeueExtended-Thin_xhhbtf.woff2')
+      format('woff2'),
+    url('https://res.cloudinary.com/appreciate-stuff-inc/raw/upload/v1632861901/assets/fonts/MaisonNeueExtended-Thin_mfyswq.woff')
+      format('woff');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'MaisonNeueBook';
+  src: url('https://res.cloudinary.com/appreciate-stuff-inc/raw/upload/v1632861900/assets/fonts/MaisonNeue-Book_k9s2uy.woff2')
+      format('woff2'),
+    url('https://res.cloudinary.com/appreciate-stuff-inc/raw/upload/v1632861900/assets/fonts/MaisonNeue-Book_xmaos9.woff')
+      format('woff');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'MaisonNeueBookItalic';
+  src: url('https://res.cloudinary.com/appreciate-stuff-inc/raw/upload/v1632861901/assets/fonts/MaisonNeue-BookItalic_asrf3x.woff')
+      format('woff2'),
+    url('https://res.cloudinary.com/appreciate-stuff-inc/raw/upload/v1632861901/assets/fonts/MaisonNeue-BookItalic_o8zayg.woff2')
+      format('woff');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'MaisonNeueDemi';
+  src: url('https://res.cloudinary.com/appreciate-stuff-inc/raw/upload/v1632861901/assets/fonts/MaisonNeue-Demi_eam1av.woff2')
+      format('woff2'),
+    url('https://res.cloudinary.com/appreciate-stuff-inc/raw/upload/v1632861901/assets/fonts/MaisonNeue-Demi_gszhnd.woff')
+      format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'MaisonNeueBlack';
+  src: url('https://res.cloudinary.com/appreciate-stuff-inc/raw/upload/v1632861900/assets/fonts/MaisonNeue-Black_b0uk3q.woff2')
+      format('woff2'),
+    url('https://res.cloudinary.com/appreciate-stuff-inc/raw/upload/v1632861900/assets/fonts/MaisonNeue-Black_vlrovq.woff')
+      format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'MaisonNeueExtendedBold';
+  src: url('https://res.cloudinary.com/appreciate-stuff-inc/raw/upload/v1632861901/assets/fonts/MaisonNeueExtended-Bold_nbc0bf.woff2')
+      format('woff2'),
+    url('https://res.cloudinary.com/appreciate-stuff-inc/raw/upload/v1632861901/assets/fonts/MaisonNeueExtended-Bold_qmepz7.woff')
+      format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'MaisonNeueBold';
+  src: url('https://res.cloudinary.com/appreciate-stuff-inc/raw/upload/v1632861900/assets/fonts/MaisonNeue-Bold_dnj4qc.woff2')
+      format('woff2'),
+    url('https://res.cloudinary.com/appreciate-stuff-inc/raw/upload/v1632861900/assets/fonts/MaisonNeue-Bold_njoq3a.woff')
+      format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'MaisonNeueExtendedThin';
+  src: url('https://res.cloudinary.com/appreciate-stuff-inc/raw/upload/v1632861901/assets/fonts/MaisonNeueExtended-Thin_mfyswq.woff')
+    format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'MaisonNeueExtended';
+  src: url('https://res.cloudinary.com/appreciate-stuff-inc/raw/upload/v1642774978/assets/fonts/MaisonNeueExtendedWEB-Medium_es1zzg.woff')
+      format('woff'),
+    url('https://res.cloudinary.com/appreciate-stuff-inc/raw/upload/v1642774978/assets/fonts/MaisonNeueExtendedWEB-Medium_zob1yc.woff2')
+      format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'MaisonNeueExtendedBook';
+  src: url('./fonts/MaisonNeueExtended-Book.woff')
+      format('woff'),
+    url('./fonts/MaisonNeueExtended-Book.woff2')
+      format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'MaisonNeueExtendedMedium';
+  src: url('./fonts/MaisonNeueExtended-Medium.woff')
+      format('woff'),
+    url('./fonts/MaisonNeueExtended-Medium.woff2')
+      format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'MaisonNeueExtendedDemi';
+  src: url('./fonts/MaisonNeueExtended-Demi.woff')
+      format('woff'),
+    url('./fonts/MaisonNeueExtended-Demi.woff2')
+      format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+.maison-neue-medium {
+  font-family: 'MaisonNeueMedium';
+}
+
+.maison-neue-light {
+  font-family: 'MaisonNeueLight';
+}
+
+.maison-neue-thin {
+  font-family: 'MaisonNeueThin';
+}
+
+.maison-neue-book {
+  font-family: 'MaisonNeueBook';
+}
+
+.maison-neue-book-italic {
+  font-family: 'MaisonNeueBookItalic';
+}
+
+.maison-neue-demi {
+  font-family: 'MaisonNeueDemi';
+}
+
+.maison-neue-extended-black {
+  font-family: 'MaisonNeueBlack';
+}
+
+.maison-neue-extended-bold {
+  font-family: 'MaisonNeueExtendedBold';
+}
+
+.maison-neue-bold {
+  font-family: 'MaisonNeueBold';
+}
+
+.maison-neue-extended {
+  font-family: 'MaisonNeueExtended';
+}
+
+.maison-neue-extended-thin {
+  font-family: 'MaisonNeueExtendedThin';
+}
+
+
+.maison-neue-extended-book {
+  font-family: 'MaisonNeueExtendedBook';
+}
+
+
+.maison-neue-extended-medium {
+  font-family: 'MaisonNeueExtendedMedium';
+}
+
+
+.maison-neue-extended-demi {
+  font-family: 'MaisonNeueExtendedDemi';
+}

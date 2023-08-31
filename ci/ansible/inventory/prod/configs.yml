@@ -1,0 +1,11 @@
+# Application Specific configuration for prod env only
+env_frontend:
+  NEXT_PUBLIC_APP_BACKEND_BASE_URL: 'https://api.appreciate.it'
+  NEXT_PUBLIC_APP_FRONTEND_BASE_URL: 'https://appreciate.it'
+  NEXT_PUBLIC_GRAPHQL_ENDPOINT: 'https://api.appreciate.it/graphql'
+  NEXT_PUBLIC_CLOUDINARY_USER_PHOTO_UPLOAD_PRESET: 'prod-user-uploads'
+  NEXT_PUBLIC_MIXPANEL_TOKEN: 'c494e6aebcc2289a3f72d611d0271782'
+  NEXT_PUBLIC_MIXPANEL_DEBUG: 'false'
+  NEXT_PUBLIC_SENTRY_DSN: 'https://613a42844ae1463ea8a3c868c9d33b91@o1097258.ingest.sentry.io/6147479'
+  NEXT_PUBLIC_IS_GTM_ENABLED: 'true'
+  NEXT_PUBLIC_IS_EXPLORE_ENABLED: 'true'

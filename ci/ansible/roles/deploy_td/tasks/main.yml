@@ -1,0 +1,10 @@
+---
+- name: 'Creating a app task definition file'
+  template:
+    src: '{{ role_path }}/templates/app-task-definition.json.j2'
+    dest: '/tmp/app-task-definition.json'
+
+- name: 'Creating a storybook task definition file'
+  template:
+    src: '{{ role_path }}/templates/storybook-task-definition.json.j2'
+    dest: '/tmp/storybook-task-definition.json'

@@ -1,0 +1,77 @@
+version: 0.2
+
+env:
+  variables:
+    git_url: 'git@github.com:Appreciate-Stuff/appreciate-app-front.git'
+    NODE_ENV: 'production'
+    NEXT_PUBLIC_GRAPHQL_ENDPOINT: 'https://api.staging.appreciate.it/graphql'
+    NEXT_PUBLIC_APP_BACKEND_BASE_URL: 'https://api.staging.appreciate.it'
+    NEXT_PUBLIC_APP_FRONTEND_BASE_URL: 'https://staging.appreciate.it'
+    NEXT_PUBLIC_CLOUDINARY_API_KEY: '888314817349995'
+    NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: 'appreciate-stuff-inc'
+    NEXT_PUBLIC_BLOG_BASE_URL: 'https://blog.appreciate.it'
+    NEXT_PUBLIC_CLOUDINARY_USER_PHOTO_UPLOAD_PRESET: 'stag-user-uploads'
+    NEXT_PUBLIC_INSTAGRAM_APP_ID: '957737058189787'
+    NEXT_PUBLIC_MIXPANEL_TOKEN: '28ad38c4299e17eb30305edc7be522a3'
+    NEXT_PUBLIC_MIXPANEL_DEBUG: 'true'
+    NEXT_PUBLIC_IS_GTM_ENABLED: 'false'
+    NEXT_PUBLIC_IS_EXPLORE_ENABLED: 'true'
+    NEXT_PUBLIC_SENTRY_DSN: 'https://24f19de7ac634f44857207600473582c@o1097258.ingest.sentry.io/6181791'
+  parameter-store:
+    ssh_key: id_rsa
+    ssh_pub: id_rsa.pub
+phases:
+  install:
+    runtime-versions:
+      docker: 18
+  pre_build:
+    commands:
+      - mkdir -p ~/.ssh
+      - echo "$ssh_key" > ~/.ssh/id_rsa
+      - echo "$ssh_pub" > ~/.ssh/id_rsa.pub
+      - chmod 600 ~/.ssh/id_rsa
+      - eval "$(ssh-agent -s)"
+      - |
+        if [ ! -d ".git" ]; then
+          git init                                              
+          git remote add origin "$git_url"                
+          git fetch origin                                            
+          git checkout -f "$CODEBUILD_RESOLVED_SOURCE_VERSION" 
+        fi
+      - git submodule init
+      - git submodule update
+      - echo Logging in to Amazon ECR...
+      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - IMAGE_TAG=$COMMIT_HASH-$CODEBUILD_BUILD_NUMBER
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - |
+        docker build \
+        --build-arg SENTRY_AUTH_TOKEN=$SENTRY_AUTH_TOKEN \
+        --build-arg NODE_ENV=$NODE_ENV \
+        --build-arg NEXT_PUBLIC_GRAPHQL_ENDPOINT=$NEXT_PUBLIC_GRAPHQL_ENDPOINT \
+        --build-arg NEXT_PUBLIC_APP_BACKEND_BASE_URL=$NEXT_PUBLIC_APP_BACKEND_BASE_URL \
+        --build-arg NEXT_PUBLIC_APP_FRONTEND_BASE_URL=$NEXT_PUBLIC_APP_FRONTEND_BASE_URL \
+        --build-arg NEXT_PUBLIC_CLOUDINARY_API_KEY=$NEXT_PUBLIC_CLOUDINARY_API_KEY \
+        --build-arg NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=$NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME \
+        --build-arg NEXT_PUBLIC_BLOG_BASE_URL=$NEXT_PUBLIC_BLOG_BASE_URL \
+        --build-arg NEXT_PUBLIC_CLOUDINARY_USER_PHOTO_UPLOAD_PRESET=$NEXT_PUBLIC_CLOUDINARY_USER_PHOTO_UPLOAD_PRESET \
+        --build-arg NEXT_PUBLIC_INSTAGRAM_APP_ID=$NEXT_PUBLIC_INSTAGRAM_APP_ID \
+        --build-arg NEXT_PUBLIC_MIXPANEL_TOKEN=$NEXT_PUBLIC_MIXPANEL_TOKEN \
+        --build-arg NEXT_PUBLIC_MIXPANEL_DEBUG=$NEXT_PUBLIC_MIXPANEL_DEBUG \
+        --build-arg NEXT_PUBLIC_IS_GTM_ENABLED=$NEXT_PUBLIC_IS_GTM_ENABLED \
+        --build-arg NEXT_PUBLIC_IS_EXPLORE_ENABLED=$NEXT_PUBLIC_IS_EXPLORE_ENABLED \
+        --build-arg NEXT_PUBLIC_SENTRY_DSN=$NEXT_PUBLIC_SENTRY_DSN \
+        -t $REPOSITORY_URI:latest .
+      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker image...
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - printf '[{"name":"%s","imageUri":"%s"}]' $APP_CONTAINER_NAME $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+artifacts:
+  files: imagedefinitions.json

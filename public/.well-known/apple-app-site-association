@@ -1,0 +1,24 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "3976ZG2VWH.it.appreciate.mobile",
+        "components": [
+          {
+            "/": "/app/auth/token",
+            "comment": "Matches any URL whose path starts with /app/auth/token"
+          },
+          {
+            "/": "/app/profile/delete-account",
+            "comment": "Matches any URL whose path starts with /app/profile/delete-account"
+          },
+          {
+            "/": "/app/credentials/*",
+            "comment": "Matches any URL whose path starts with /app/credentials/:credentialId"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,43 @@
+import { Config } from './envgen';
+
+const CLOUDINARY_CLOUD_NAME = 'appreciate-stuff-inc';
+const CLOUDINARY_USER_PHOTO_UPLOAD_PRESET = 'dev-user-uploads';
+
+const INSTAGRAM_APP_ID = '957737058189787';
+const INSTAGRAM_APP_SECRET = 'instagram-app-secret';
+const APP_BLOG_BASE_URL = `https://blog.appreciate.it`;
+const ENABLE_NGROK = false;
+
+const NGROK_BACKEND_BASE_URL = 'https://appreciate.us.ngrok.io';
+const NGROK_FRONT_BASE_URL = 'https://appreciate.front.us.ngrok.io';
+
+const APP_FRONTEND_BASE_URL = ENABLE_NGROK
+  ? NGROK_FRONT_BASE_URL
+  : 'http://localhost:3000';
+
+const APP_BACKEND_BASE_URL = ENABLE_NGROK
+  ? NGROK_BACKEND_BASE_URL
+  : `http://localhost:4000`;
+
+const APP_BACKEND_GRAPHQL_ENDPOINT = `${APP_BACKEND_BASE_URL}/graphql`;
+
+export const config: Config = {
+  dir: __dirname,
+  filename: '.env.local',
+  variables: {
+    NODE_ENV: 'development',
+    NEXT_PUBLIC_GRAPHQL_ENDPOINT: APP_BACKEND_GRAPHQL_ENDPOINT,
+    NEXT_PUBLIC_APP_BACKEND_BASE_URL: APP_BACKEND_BASE_URL,
+    NEXT_PUBLIC_APP_FRONTEND_BASE_URL: APP_FRONTEND_BASE_URL,
+    NEXT_PUBLIC_CLOUDINARY_API_KEY: '888314817349995',
+    NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: CLOUDINARY_CLOUD_NAME,
+    NEXT_PUBLIC_BLOG_BASE_URL: APP_BLOG_BASE_URL,
+    NEXT_PUBLIC_CLOUDINARY_USER_PHOTO_UPLOAD_PRESET:
+      CLOUDINARY_USER_PHOTO_UPLOAD_PRESET,
+    NEXT_PUBLIC_INSTAGRAM_APP_ID: INSTAGRAM_APP_ID,
+    NEXT_PUBLIC_MIXPANEL_TOKEN: '28ad38c4299e17eb30305edc7be522a3',
+    NEXT_PUBLIC_MIXPANEL_DEBUG: 'true',
+    NEXT_PUBLIC_IS_GTM_ENABLED: 'false',
+    NEXT_PUBLIC_IS_EXPLORE_ENABLED: 'true',
+  },
+};

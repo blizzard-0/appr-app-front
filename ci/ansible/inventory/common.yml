@@ -1,0 +1,12 @@
+aws_region: 'us-east-1'
+account_id: '736898943770'
+app_ecr_repo: '{{ account_id }}.dkr.ecr.{{ aws_region }}.amazonaws.com/nextjs-app-frontend'
+storybook_ecr_repo: '{{ account_id }}.dkr.ecr.{{ aws_region }}.amazonaws.com/storybook'
+
+# Application Environment common across all environments
+common_env_frontend:
+  NODE_ENV: 'production'
+  NEXT_PUBLIC_CLOUDINARY_API_KEY: '888314817349995'
+  NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: 'appreciate-stuff-inc'
+  NEXT_PUBLIC_INSTAGRAM_APP_ID: '957737058189787'
+  NEXT_PUBLIC_BLOG_BASE_URL: 'https://blog.appreciate.it'

@@ -1,0 +1,47 @@
+{
+  "containerDefinitions": [
+    {
+      "name": "{{ env }}-app",
+      "image": "{{ app_ecr_repo }}:{{ app_image_name }}",
+      "cpu": 256,
+      "memory": 512,
+      "portMappings": [
+        {
+          "containerPort": 3000,
+          "hostPort": 3000,
+          "protocol": "tcp"
+        }
+      ],
+      "entryPoint": [],
+      "command": [],
+      "environment": [        
+          {% for name, value in common_env_frontend.items() %} 
+          {
+              "name": "{{ name }}",
+              "value": "{{ value }}"
+          }{% if not loop.last %},{% endif %}{% endfor %},
+
+          {% for name, value in env_frontend.items() %}{
+              "name": "{{ name }}",
+              "value": "{{ value }}"
+          }{% if not loop.last %},{% endif %}       
+          {% endfor %} ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/{{ env }}/{{ env }}-app",
+          "awslogs-region": "{{ aws_region }}",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ],
+  "family": "{{ env }}-app",
+  "executionRoleArn": "arn:aws:iam::{{ account_id }}:role/{{ env }}-app-ecs-task-execution-role",
+  "networkMode": "awsvpc",
+  "cpu": "256",
+  "memory": "512",
+  "requiresCompatibilities": [
+    "FARGATE"
+  ]
+}
